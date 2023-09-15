@@ -1,0 +1,121 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Roboto+Condensed&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Handjet&display=swap');
+
+*{
+    padding: 0px;
+    margin: 0px;
+
+}
+header{
+    font-family: 'Handjet', cursive;font-family: 'Handjet', cursive;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+thead{
+    padding: 5px;
+    text-align: center;
+}
+table{
+    width: 70%;
+    border-collapse: collapse;
+    margin: auto;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+tr{
+    border: 1px solid rgb(121, 86, 161);
+}
+td{
+    padding: 10px;
+    text-align: center;
+}
+img{
+    width: 20px;
+    height: 20px;
+}
+.options{
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    width: 69%;
+   
+    height: 20px;
+    margin: auto;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+.items{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgb(11, 174, 219);
+    font-family: 'Poppins', sans-serif;
+}
+.items:hover{
+    background-color: rgb(132, 137, 137);
+    border-radius: 6px;
+    
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+a:hover{
+text-decoration: underline;
+font-size: 17px;
+color: rgb(5, 5, 54);
+}
+span{
+    color: rgb(48, 48, 137);
+}
+.blue{
+    color: rgb(11, 174, 219);
+}
+form{
+    width: 60%;
+    margin: auto;
+}
+input{
+    width: 400px;
+    padding: 5px;
+    outline: none;
+    border: blue solid 2px;
+    border-radius: 9px;
+}
+textarea{
+    width: 400px;
+    padding: 5px;
+    outline: none;
+    border: blue solid 2px;
+    border-radius: 9px;
+}
+button{
+    padding: 10px;
+    width: 120px;
+    border: none;
+    background-color: blue;
+    color: white;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+button:hover{
+  background-color: rgb(4, 4, 36);
+  font-family: 'Roboto Condensed', sans-serif;
+}
+fieldset{
+   
+    border: rgb(11, 75, 164) 2px solid;
+    padding: 3px;
+}
+legend{
+    font-size: 19px;
+    font-family: 'Handjet', cursive;font-family: 'Handjet', cursive;
+}
+.white{
+    
+    
+    border: none;
+    background-color: blue;
+    color: white;
+    font-family: 'Roboto Condensed', sans-serif;
+}
