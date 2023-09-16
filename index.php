@@ -1,3 +1,14 @@
+<?php 
+      
+        $newDir = $_GET['dir'] ?? null;
+      
+        //custom dir here
+        $customdir = "/user-files";
+        
+        
+        
+        
+        ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -12,25 +23,76 @@
 
     <main>
         <div class="options">
-         
-        <div class="items"><img src="icons/lapis.png" alt=""><a class="blue" href="createFile.php">New File</a></div>
+        <?php
+         require_once "funcs.php";
+         if(is_root()){
+            $dirroot=getcwd().$customdir;
+            echo "
+            
+            <div class='items'><img src='icons/lapis.png' ><a class='blue' href='createFile.php?dir=$dirroot'>New File</a></div>
+            
+            ";
 
-        <div class="items"><img src="icons/upload-de-arquivo.png" alt="">Upload</div>
+         }else{
+            echo "
+            
+            <div class='items'><img src='icons/lapis.png' ><a class='blue' href='createFile.php?dir=$newDir>'>New File</a></div>
+            
+            ";
+         }
+        ?>
+       <!-- <div class="items"><img src="icons/lapis.png" alt=""><a class="blue" href="createFile.php?dir=// echo $newDir;?>">New File</a></div>
+       -->
+        <?php 
+        if(!is_root()){
+                echo "
+            <div class='items'><img src='icons/upload-de-arquivo.png'><a class='blue' href='upload.php?dir=$newDir'>Upload </div>
+            ";
+        }
+        else{
+            echo "
+            <div class='items'><img src='icons/upload-de-arquivo.png'><a class='blue'href='upload.php?dir=$dirroot'>Upload </div>
+            ";
+        }
+        ?>
+        <?php
+         require_once "funcs.php";
+         if(is_root()){
+            $dirroot=getcwd().$customdir;
+            echo "
+            
+            <div class='items'><img src='icons/pasta.png' ><a class='blue' href='newFolder.php?dir=$dirroot'>New Folder</a></div>
+            
+            ";
 
-        <div class="items"><img src="icons/upload-de-arquivo.png" alt="">New Folder</div>
+         }else{
+            echo "
+            
+            <div class='items'><img src='icons/pasta.png' ><a class='blue' href='newFolder.php?dir=$newDir>'>Folder</a></div>
+            
+            ";
+         }
+        ?>
+       
 
 
     
     </div>
+    
     <table>
-        <thead><th>Type</th><th> Name</th>  <th>Size</th></th> <th>Time</th></thead>
+        <legend></legend>
+        <thead><th>Type</th><th> Name</th>  <th>Size</th></th> <th>Options</th></thead>
         <tbody> 
         
         
      <?php 
      $newDir = $_GET['dir'] ?? null;
-
-     $dirCurrent = getcwd();
+     $adaDir = "";
+     
+     
+     $dirCurrent = getcwd().$customdir;
+     //
+    // $dirCurrent = getcwd();
      $sc = scandir($dirCurrent);
 
 
@@ -50,36 +112,44 @@
             $trash="";
             $trash = $files;
         }
-        else {
-            if($files == "..")
+        if($files == ".."){
             echo " <tr><td><img src='icons/pasta.png'>
-                    <td><a href='.'>$files</a>
+                    <td><a href='.'>Raiz $files</a>
                     <td>Root
                     <td>Root</tr>";
+
+            }
+        else {
+           
+            if(str_contains($dirCurrent."/".$files,".txt")){
+                        echo " <tr><td><img src='icons/txt.png'>
+                        <td><a href='$files'>$files</a>
+                        <td
+                        <td> <td> <a href='delete.php?dir=$dirCurrent/$files'><img src='icons/excluir.png'></a></tr>
+                       ";
+            }
             else{
 
-                if(is_dir($files)){
+                if(is_dir($dirCurrent."/".$files)){
                     echo " <tr><td><img src='icons/pasta.png'>
                     <td><a href='index.php?dir=$dirCurrent/$files'>$files</a>
                     <td
                     <td></tr>";
 
-                if(str_contains($files,".txt")){
-                    echo " <tr><td><img src='icons/txt.png'>
-                    <td><a href='index.php?dir=$dirCurrent/$files'>$files</a>
-                    <td
-                    <td></tr>";
-                }
+            
+                
                 }else{
+                   
                     echo " <tr><td><img src='icons/desconhecido.png'>
-                    <td><a href='index.php?dir=$dirCurrent/$files'>$files</a>
-                    <td
-                    <td></tr>"; 
+                    <td><a href='user-files/$files'>$files</a>
+                    <td>
+                    <td> <a href='delete.php?dir=$dirCurrent/$files'><img src='icons/excluir.png'></a></tr>"; 
+                    }
                 }
             }
-        }
-       
-     }
+        
+    }
+     
      
      
      ?>

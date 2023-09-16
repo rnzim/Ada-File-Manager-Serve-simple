@@ -10,23 +10,18 @@
 <body>
     <header> <h1>Ada <span>Files</span></h1> </header>
     <?php
+        $saveDir = $_POST['sd'] ?? null;
+        $dirCurrent = $_GET['dir'] ?? null;
+        $name = $_POST['name'] ?? null;
 
-       $name = $_POST['name'] ?? null;
-       $content = $_POST['content'] ??null;
-       $saveDir = $_POST['sd'] ?? null;
-       $dirCurrent = $_GET['dir'] ?? null;
-       
-       echo $dirCurrent;
-       echo $saveDir."\n";
-       if(!is_null($name)){
-       
-          $file = fopen("$saveDir/$name","w");
-         if(fwrite($file,$content)) {
-            echo "sucesso salvo em ".$_GET['dir'] ?? null;
-            fclose("$file");
-         }
-        
-       }
+        echo "$saveDir";
+        if(!is_null($name)){
+        if(mkdir("$saveDir/$name")){
+            echo "Sucesso ao criar pasta";
+        }else{
+            echo "Erro sinistro ao criar";
+        }
+    }
     ?>
     <main>
     <form action="createFile.php" method="post">
@@ -34,8 +29,7 @@
         <legend>Name</legend>
         <input type="text" name="name">
         <br>
-        <textarea name="content" id="" cols="30" rows="10"></textarea>
-        <br>
+       
         <input type="hidden" name="sd"value="<?php echo $dirCurrent?>">
        <button><a href="index.php" class="white">Fechar </a> </button>
        
