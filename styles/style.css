@@ -28,7 +28,7 @@ tr{
 }
 td{
     padding: 10px;
-    text-align: center;
+    text-align: left;
 }
 img{
     width: 20px;
@@ -94,7 +94,7 @@ button{
     padding: 10px;
     width: 120px;
     border: none;
-    background-color: blue;
+    background-color: rgb(3, 3, 28);
     color: white;
     font-family: 'Roboto Condensed', sans-serif;
 }
@@ -113,9 +113,17 @@ legend{
 }
 .white{
     
-    
+    padding: 10px;
     border: none;
+    margin-left: 5px;
+    width: 120px;
     background-color: blue;
     color: white;
     font-family: 'Roboto Condensed', sans-serif;
+}
+.back{
+    background-color: azure;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
 }

@@ -16,14 +16,15 @@
        $saveDir = $_POST['sd'] ?? null;
        $dirCurrent = $_GET['dir'] ?? null;
        
-       echo $dirCurrent;
-       echo $saveDir."\n";
+       
+       
        if(!is_null($name)){
        
-          $file = fopen("$saveDir/$name","w");
+         $file = fopen("$saveDir/$name","w");
          if(fwrite($file,$content)) {
-            echo "sucesso salvo em ".$_GET['dir'] ?? null;
-            fclose("$file");
+            fclose($file);
+            echo "<script> history.go(-2)
+           </script>";
          }
         
        }
@@ -37,7 +38,7 @@
         <textarea name="content" id="" cols="30" rows="10"></textarea>
         <br>
         <input type="hidden" name="sd"value="<?php echo $dirCurrent?>">
-       <button><a href="index.php" class="white">Fechar </a> </button>
+        <a href="index.php" class="white">Fechar </a>
        
         <button type="submit">Salvar</button>
         </fieldset>

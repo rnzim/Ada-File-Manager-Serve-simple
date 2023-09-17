@@ -14,24 +14,26 @@
         $dirCurrent = $_GET['dir'] ?? null;
         $name = $_POST['name'] ?? null;
 
-        echo "$saveDir";
+     
         if(!is_null($name)){
-        if(mkdir("$saveDir/$name")){
-            echo "Sucesso ao criar pasta";
+        if(mkdir("$saveDir/$name",0777,true)){
+          echo "<script> history.go(-2)
+          </script>";
+        
         }else{
             echo "Erro sinistro ao criar";
         }
     }
     ?>
     <main>
-    <form action="createFile.php" method="post">
+    <form action="newFolder.php" method="post">
         <fieldset>
         <legend>Name</legend>
         <input type="text" name="name">
         <br>
        
         <input type="hidden" name="sd"value="<?php echo $dirCurrent?>">
-       <button><a href="index.php" class="white">Fechar </a> </button>
+       <a href="index.php" class="white">Fechar </a> 
        
         <button type="submit">Salvar</button>
         </fieldset>

@@ -6,7 +6,7 @@
         $customdir = "/user-files";
         
         
-        
+       
         
         ?>
 <!DOCTYPE html>
@@ -54,6 +54,7 @@
             <div class='items'><img src='icons/upload-de-arquivo.png'><a class='blue'href='upload.php?dir=$dirroot'>Upload </div>
             ";
         }
+        
         ?>
         <?php
          require_once "funcs.php";
@@ -74,14 +75,20 @@
          }
         ?>
        
-
+      <?php
+        if(!is_root()){
+           echo " <button class='back'><img src='icons/voltar.png'onclick='window.history.back()'></button>";
+        }
+        
+      ?>
+      <button class='back'><img src='icons/reload.png'onclick='location.reload()'>Reload</button>
 
     
     </div>
     
     <table>
         <legend></legend>
-        <thead><th>Type</th><th> Name</th>  <th>Size</th></th> <th>Options</th></thead>
+        <thead><th>Type</th><th> Name</th>  <th>Size</th></th> <th></th></thead>
         <tbody> 
         
         
@@ -94,18 +101,22 @@
      //
     // $dirCurrent = getcwd();
      $sc = scandir($dirCurrent);
+    
+     if(!is_root()){
 
+        $dvf = viewFile();
+     }else{
+        $dvf = "user-files";
+     }
+    
 
      if(!is_null($newDir)){
         $dirCurrent = $newDir;
         if(is_dir($newDir)){
         $sc = scandir($dirCurrent);
         }
-        else{
-           
-            
-        }
-    }
+       
+     }
      
      foreach ($sc as $key => $files) {
         if($files == "."){
@@ -122,26 +133,41 @@
         else {
            
             if(str_contains($dirCurrent."/".$files,".txt")){
+                      
                         echo " <tr><td><img src='icons/txt.png'>
-                        <td><a href='$files'>$files</a>
+                        <td><a href='$dvf/$files'>$files</a>
                         <td
                         <td> <td> <a href='delete.php?dir=$dirCurrent/$files'><img src='icons/excluir.png'></a></tr>
                        ";
             }
+
+
+            if(str_contains($dirCurrent."/".$files,".mp4")){
+                      
+                echo " <tr><td><img src='icons/mp4.png'>
+                <td><a href='$dvf/$files'>$files</a>
+                <td
+                <td> <td> <a href='delete.php?dir=$dirCurrent/$files'><img src='icons/excluir.png'>  <td><a href='$dvf/$files' type='application/mp4'><img src='icons/download-direto.png'</a></
+                a></tr>
+               
+               ";
+             }
+
             else{
 
                 if(is_dir($dirCurrent."/".$files)){
                     echo " <tr><td><img src='icons/pasta.png'>
                     <td><a href='index.php?dir=$dirCurrent/$files'>$files</a>
-                    <td
-                    <td></tr>";
+                    <td>
+                  
+                    <td><a href='delete.php?dir=$dirCurrent/$files'><img src='icons/excluir.png'></a></tr>";
 
             
                 
                 }else{
-                   
+                    $dvf = viewFile();
                     echo " <tr><td><img src='icons/desconhecido.png'>
-                    <td><a href='user-files/$files'>$files</a>
+                    <td><a href='$dvf/$files'>$files</a>
                     <td>
                     <td> <a href='delete.php?dir=$dirCurrent/$files'><img src='icons/excluir.png'></a></tr>"; 
                     }

@@ -10,7 +10,12 @@ function is_root(){
     }
 }
 function viewFile(){
-    $dr = "";
+    $drr = $_GET['dir'] ?? null;
+        if(!is_null($drr)){
+
+        $drrfinal  = substr($drr,strpos($drr,"user-files"),strlen($drr));
+        return $drrfinal;
+    }
 }
 
 ?>

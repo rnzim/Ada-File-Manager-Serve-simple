@@ -21,9 +21,8 @@
        $uploadfile = $dirfile."/" .   basename($_FILES['name']['name']);
     
        if(move_uploaded_file($_FILES['name']['tmp_name'], $uploadfile)){
-          echo "Sucesso no upload";
-          header("Location: index.php");
-          exit;
+        echo "<script> history.go(-2)
+        </script>";
        }else{
         echo"<pre>";
         echo"Final: $uploadfile<br>";
@@ -40,7 +39,7 @@
     <br>
    
     <input type="hidden" name="sd" value="<?php echo $dirCurrent?>" >
-   <button><a href="index.php" class="white">Fechar </a> </button>
+   <a href="index.php" class="white">Fechar </a>
    
     <button type="submit">Upload</button>
     </fieldset>
